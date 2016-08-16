@@ -45,5 +45,10 @@ def calc_fantasy_pts(player, games):
     else:
         rush_bonus_pts, rec_bonus_pts = 0, 0
 
-    return rush_yds_pts + rush_td_pts + rush_conversion_pts + rush_bonus_pts + rec_yds_pts + rec_td_pts + \
-           rec_conversion_pts + rec_pts + rec_bonus_pts + fumble_pts
+    rush_pts = rush_yds_pts + rush_td_pts + rush_conversion_pts + rush_bonus_pts
+    rec_pts = rec_yds_pts + rec_td_pts + rec_conversion_pts + rec_pts + rec_bonus_pts
+    total_pts = rush_pts + rec_pts + fumble_pts
+
+    rec_percent = (rec_pts / total_pts)*100 if total_pts > 0 else -1
+
+    return total_pts, rec_percent
